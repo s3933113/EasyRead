@@ -27,11 +27,8 @@ const Index = () => {
     if (currentStep === 1) {
       return (
         <StepComponent
-          data={uploadedData}
           onDataUpload={setUploadedData}
           onNext={() => setCurrentStep(prev => Math.min(prev + 1, 4))}
-          onBack={() => setCurrentStep(prev => Math.max(prev - 1, 1))}
-          apiKey={apiKey}
           currentStep={currentStep}
         />
       );
@@ -39,11 +36,11 @@ const Index = () => {
       return (
         <StepComponent
           data={uploadedData}
+          summaryData={summaryData}
           onSummaryGenerated={setSummaryData}
           onNext={() => setCurrentStep(prev => Math.min(prev + 1, 4))}
           onBack={() => setCurrentStep(prev => Math.max(prev - 1, 1))}
           apiKey={apiKey}
-          currentStep={currentStep}
         />
       );
     } else if (currentStep === 3) {
@@ -53,8 +50,6 @@ const Index = () => {
           summaryData={summaryData}
           onNext={() => setCurrentStep(prev => Math.min(prev + 1, 4))}
           onBack={() => setCurrentStep(prev => Math.max(prev - 1, 1))}
-          apiKey={apiKey}
-          currentStep={currentStep}
         />
       );
     } else if (currentStep === 4) {
@@ -65,7 +60,6 @@ const Index = () => {
           onNext={() => setCurrentStep(prev => Math.min(prev + 1, 4))}
           onBack={() => setCurrentStep(prev => Math.max(prev - 1, 1))}
           apiKey={apiKey}
-          currentStep={currentStep}
         />
       );
     }
