@@ -6,6 +6,7 @@ import DataSummary from '@/components/DataSummary';
 import DataMapping from '@/components/DataMapping';
 import QuizSection from '@/components/QuizSection';
 import ApiKeyInput from '@/components/ApiKeyInput';
+import ThemeToggle from '@/components/ThemeToggle';
 
 const Index = () => {
   const [currentStep, setCurrentStep] = useState(1);
@@ -22,32 +23,60 @@ const Index = () => {
 
   const renderCurrentStep = () => {
     const StepComponent = steps[currentStep - 1].component;
-    const commonProps = {
-      data: uploadedData,
-      onNext: () => setCurrentStep(prev => Math.min(prev + 1, 4)),
-      onBack: () => setCurrentStep(prev => Math.max(prev - 1, 1)),
-      apiKey: apiKey,
-      currentStep: currentStep
-    };
 
-    // Add specific props based on component type
     if (currentStep === 1) {
-      return <StepComponent {...commonProps} onDataUpload={setUploadedData} />;
+      return (
+        <StepComponent
+          data={uploadedData}
+          onDataUpload={setUploadedData}
+          onNext={() => setCurrentStep(prev => Math.min(prev + 1, 4))}
+          onBack={() => setCurrentStep(prev => Math.max(prev - 1, 1))}
+          apiKey={apiKey}
+          currentStep={currentStep}
+        />
+      );
     } else if (currentStep === 2) {
-      return <StepComponent {...commonProps} onSummaryGenerated={setSummaryData} />;
+      return (
+        <StepComponent
+          data={uploadedData}
+          onSummaryGenerated={setSummaryData}
+          onNext={() => setCurrentStep(prev => Math.min(prev + 1, 4))}
+          onBack={() => setCurrentStep(prev => Math.max(prev - 1, 1))}
+          apiKey={apiKey}
+          currentStep={currentStep}
+        />
+      );
     } else if (currentStep === 3) {
-      return <StepComponent {...commonProps} summaryData={summaryData} />;
+      return (
+        <StepComponent
+          data={uploadedData}
+          summaryData={summaryData}
+          onNext={() => setCurrentStep(prev => Math.min(prev + 1, 4))}
+          onBack={() => setCurrentStep(prev => Math.max(prev - 1, 1))}
+          apiKey={apiKey}
+          currentStep={currentStep}
+        />
+      );
     } else if (currentStep === 4) {
-      return <StepComponent {...commonProps} summaryData={summaryData} />;
+      return (
+        <StepComponent
+          data={uploadedData}
+          summaryData={summaryData}
+          onNext={() => setCurrentStep(prev => Math.min(prev + 1, 4))}
+          onBack={() => setCurrentStep(prev => Math.max(prev - 1, 1))}
+          apiKey={apiKey}
+          currentStep={currentStep}
+        />
+      );
     }
 
-    return <StepComponent {...commonProps} />;
+    return null;
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-700">
       {/* Header */}
-      <div className="bg-white/80 backdrop-blur-sm border-b">
+      <div className="bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm border-b dark:border-gray-700">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-3">
@@ -58,10 +87,13 @@ const Index = () => {
                 <h1 className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
                   DataMind
                 </h1>
-                <p className="text-sm text-gray-600">AI-Powered Data Analysis & Learning</p>
+                <p className="text-sm text-gray-600 dark:text-gray-300">AI-Powered Data Analysis & Learning</p>
               </div>
             </div>
-            <ApiKeyInput apiKey={apiKey} onApiKeyChange={setApiKey} />
+            <div className="flex items-center space-x-4">
+              <ThemeToggle />
+              <ApiKeyInput apiKey={apiKey} onApiKeyChange={setApiKey} />
+            </div>
           </div>
         </div>
       </div>
@@ -82,20 +114,20 @@ const Index = () => {
                       ? 'bg-blue-600 border-blue-600 text-white shadow-lg'
                       : isCompleted
                       ? 'bg-green-600 border-green-600 text-white'
-                      : 'bg-white border-gray-300 text-gray-400'
+                      : 'bg-white dark:bg-gray-800 border-gray-300 dark:border-gray-600 text-gray-400 dark:text-gray-500'
                   }`}
                 >
                   <Icon className="w-6 h-6" />
                 </div>
                 <div className="ml-3 mr-8">
-                  <p className={`text-sm font-medium ${isActive ? 'text-blue-600' : isCompleted ? 'text-green-600' : 'text-gray-500'}`}>
+                  <p className={`text-sm font-medium ${isActive ? 'text-blue-600' : isCompleted ? 'text-green-600' : 'text-gray-500 dark:text-gray-400'}`}>
                     {step.title}
                   </p>
                 </div>
                 {index < steps.length - 1 && (
                   <div
                     className={`w-16 h-1 mx-4 rounded-full transition-all duration-300 ${
-                      isCompleted ? 'bg-green-600' : 'bg-gray-200'
+                      isCompleted ? 'bg-green-600' : 'bg-gray-200 dark:bg-gray-700'
                     }`}
                   />
                 )}
@@ -105,7 +137,7 @@ const Index = () => {
         </div>
 
         {/* Main Content */}
-        <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
+        <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl overflow-hidden">
           {renderCurrentStep()}
         </div>
       </div>
