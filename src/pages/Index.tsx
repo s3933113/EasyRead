@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { Upload, Brain, Map, Quiz } from 'lucide-react';
+import { Upload, Brain, Map, HelpCircle } from 'lucide-react';
 import FileUpload from '@/components/FileUpload';
 import DataSummary from '@/components/DataSummary';
 import DataMapping from '@/components/DataMapping';
@@ -17,23 +17,31 @@ const Index = () => {
     { id: 1, title: 'Upload Data', icon: Upload, component: FileUpload },
     { id: 2, title: 'AI Summary', icon: Brain, component: DataSummary },
     { id: 3, title: 'Visual Map', icon: Map, component: DataMapping },
-    { id: 4, title: 'Generate Quiz', icon: Quiz, component: QuizSection },
+    { id: 4, title: 'Generate Quiz', icon: HelpCircle, component: QuizSection },
   ];
 
   const renderCurrentStep = () => {
     const StepComponent = steps[currentStep - 1].component;
-    return (
-      <StepComponent
-        data={uploadedData}
-        summaryData={summaryData}
-        onDataUpload={setUploadedData}
-        onSummaryGenerated={setSummaryData}
-        onNext={() => setCurrentStep(prev => Math.min(prev + 1, 4))}
-        onBack={() => setCurrentStep(prev => Math.max(prev - 1, 1))}
-        apiKey={apiKey}
-        currentStep={currentStep}
-      />
-    );
+    const commonProps = {
+      data: uploadedData,
+      onNext: () => setCurrentStep(prev => Math.min(prev + 1, 4)),
+      onBack: () => setCurrentStep(prev => Math.max(prev - 1, 1)),
+      apiKey: apiKey,
+      currentStep: currentStep
+    };
+
+    // Add specific props based on component type
+    if (currentStep === 1) {
+      return <StepComponent {...commonProps} onDataUpload={setUploadedData} />;
+    } else if (currentStep === 2) {
+      return <StepComponent {...commonProps} onSummaryGenerated={setSummaryData} />;
+    } else if (currentStep === 3) {
+      return <StepComponent {...commonProps} summaryData={summaryData} />;
+    } else if (currentStep === 4) {
+      return <StepComponent {...commonProps} summaryData={summaryData} />;
+    }
+
+    return <StepComponent {...commonProps} />;
   };
 
   return (

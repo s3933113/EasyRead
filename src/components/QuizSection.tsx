@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { Quiz, Loader2, CheckCircle, XCircle, RotateCcw } from 'lucide-react';
+import { HelpCircle, Loader2, CheckCircle, XCircle, RotateCcw } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { useToast } from '@/hooks/use-toast';
@@ -161,7 +161,7 @@ const QuizSection: React.FC<QuizSectionProps> = ({ data, summaryData, onBack, ap
   if (!data || !summaryData) {
     return (
       <div className="p-8 text-center">
-        <Quiz className="w-16 h-16 text-gray-400 mx-auto mb-4" />
+        <HelpCircle className="w-16 h-16 text-gray-400 mx-auto mb-4" />
         <h2 className="text-2xl font-bold text-gray-900 mb-2">No Data Available</h2>
         <p className="text-gray-600 mb-6">Please complete the analysis steps first.</p>
         <Button onClick={onBack} variant="outline">
@@ -185,7 +185,7 @@ const QuizSection: React.FC<QuizSectionProps> = ({ data, summaryData, onBack, ap
       {quiz.length === 0 ? (
         <div className="text-center space-y-6">
           <div className="bg-gradient-to-br from-purple-50 to-pink-50 rounded-xl p-8">
-            <Quiz className="w-16 h-16 text-purple-600 mx-auto mb-4" />
+            <HelpCircle className="w-16 h-16 text-purple-600 mx-auto mb-4" />
             <h3 className="text-xl font-semibold mb-4">Ready to Generate Quiz?</h3>
             <p className="text-gray-600 mb-6">
               Create personalized questions based on your data analysis
@@ -204,7 +204,7 @@ const QuizSection: React.FC<QuizSectionProps> = ({ data, summaryData, onBack, ap
                 </>
               ) : (
                 <>
-                  <Quiz className="w-5 h-5 mr-2" />
+                  <HelpCircle className="w-5 h-5 mr-2" />
                   Generate Quiz
                 </>
               )}
