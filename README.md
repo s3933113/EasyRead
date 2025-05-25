@@ -1,73 +1,101 @@
-# Welcome to your Lovable project
+# 📄 AI Document Analyzer & Concept Mapper
 
-## Project info
+AI-powered web app that transforms PDF documents into interactive summaries, concept maps, and practice quizzes — all in one place.
 
-**URL**: https://lovable.dev/projects/ba647331-acd5-43cf-aa1d-8ae830d8c94f
+![App Screenshot](./public/screenshot.png)
 
-## How can I edit this code?
+---
 
-There are several ways of editing your application.
+## 🚀 What It Does
 
-**Use Lovable**
+- 📄 Upload your **PDF**
+- 🤖 Analyze content using **GPT-4**
+- 🧠 Summarize main topics, themes, and insights
+- 🗺️ Visualize relationships as an **interactive concept map**
+- ❓ Generate quizzes to reinforce learning
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/ba647331-acd5-43cf-aa1d-8ae830d8c94f) and start prompting.
+---
 
-Changes made via Lovable will be committed automatically to this repo.
+## 🧠 Why We Built It
 
-**Use your preferred IDE**
+Understanding complex documents — like academic papers, reports, or data sheets — takes time. We wanted to build a tool that **automates understanding**, **encourages active learning**, and makes documents **more accessible** using AI.
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+---
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+## ✨ Features
 
-Follow these steps:
+- Drag & drop PDF upload
+- GPT-powered summarization
+- Visual concept maps (central and related nodes)
+- Insights & topic hierarchy
+- Quizzes based on document content
+- Responsive, dark-mode UI
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+---
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+## 🛠️ Built With
 
-# Step 3: Install the necessary dependencies.
-npm i
+| Tech | Description |
+|------|-------------|
+| **React + TypeScript** | Frontend SPA |
+| **Tailwind CSS** | Utility-first styling |
+| **OpenAI GPT-4** | AI-powered content analysis |
+| **Lucide Icons** | Icon set |
+| **PDF.js** | Parsing uploaded PDF files |
+| **Vercel** | Deployment (optional) |
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
+---
 
-**Edit a file directly in GitHub**
+## 🧪 How It Works
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+1. PDF is parsed and extracted as raw text
+2. Text + data structure is sent to GPT-4 with a structured prompt
+3. AI returns:
+   - Summary
+   - Main topics and hierarchy
+   - Concept map data
+   - Quiz ideas
+4. Visual components (concept map, stats, insights) are dynamically rendered
 
-**Use GitHub Codespaces**
+---
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+## 📸 Screenshots
 
-## What technologies are used for this project?
+| Summary View | Concept Map | Quiz Preview |
+|--------------|-------------|--------------|
+| ![Summary](./public/summary.png) | ![Map](./public/map.png) | ![Quiz](./public/quiz.png) |
 
-This project is built with:
+---
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+## 🎮 Try It Live
 
-## How can I deploy this project?
+- 🌐 [Live Demo](https://your-app.vercel.app)
+- 💻 [GitHub Repo](https://github.com/your-username/document-analyzer)
 
-Simply open [Lovable](https://lovable.dev/projects/ba647331-acd5-43cf-aa1d-8ae830d8c94f) and click on Share -> Publish.
+---
 
-## Can I connect a custom domain to my Lovable project?
+## 🧩 Example Prompt Sent to GPT
 
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+```json
+{
+  "documentDescription": "...",
+  "mainTopics": [
+    {
+      "topic": "Privacy Laws",
+      "description": "Overview of privacy regulations...",
+      "keyPoints": ["GDPR", "CCPA", "data rights"]
+    }
+  ],
+  "topicHierarchy": {
+    "primary": ["Privacy Laws"],
+    "secondary": ["User Rights", "Legal Compliance"]
+  },
+  "keyThemes": [
+    {
+      "name": "Data Protection",
+      "description": "Focus on how data is secured.",
+      "relevance": 9,
+      "keyPoints": ["Encryption", "Access Control"]
+    }
+  ]
+}
