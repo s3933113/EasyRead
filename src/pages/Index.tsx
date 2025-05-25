@@ -79,7 +79,7 @@ const Index = () => {
               </div>
               <div>
                 <h1 className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                  DataMind
+                  EasyRead
                 </h1>
                 <p className="text-sm text-gray-600 dark:text-gray-300">AI-Powered Data Analysis & Learning</p>
               </div>
